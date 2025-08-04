@@ -5,7 +5,7 @@ import { Repository } from 'typeorm';
 import { User } from './entities/user.entity';
 import { dataSource } from 'src/shared/database/typeorm/data-source';
 
-const cacheTTL = 30 * 1000;
+const cacheTTL = 2 * 1000;
 const getOneCacheKey = (id: number) => `users:getOne-${id}`;
 const getAllCacheKey = 'users:getAll';
 
@@ -13,10 +13,11 @@ const getAllCacheKey = 'users:getAll';
 export class UsersRepository {
   constructor(
     @Inject('USER_REPOSITORY')
-    private repository: Repository<User>,
+    private repository: Repository<User>
   ) {}
 
   create(createUserDto: CreateUserDto) {
+    console.log('createUserDto', createUserDto)
     return this.repository.create({
       ...createUserDto,
     });
@@ -39,14 +40,14 @@ export class UsersRepository {
   }
 
   async update(id: number, updateUserDto: UpdateUserDto) {
-    await dataSource.queryResultCache?.remove([getOneCacheKey(id), getAllCacheKey]); 
+    // await dataSource.queryResultCache?.remove([getOneCacheKey(id), getAllCacheKey]); 
     return this.repository.update(id, {
       ...updateUserDto,
     });
   }
 
   async remove(id: number) {
-    await dataSource.queryResultCache?.remove([getOneCacheKey(id), getAllCacheKey]); 
+    // await dataSource.queryResultCache?.remove([getOneCacheKey(id), getAllCacheKey]); 
     return this.repository.delete(id);
   }
 }

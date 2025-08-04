@@ -20,12 +20,12 @@ import { redisStore } from 'cache-manager-ioredis-yet';
     CacheModule.registerAsync({
       isGlobal: true,
       useFactory: async () => {
-          const _redisStore = await redisStore({
-          host: '127.0.0.1',
-          port: 6379,
+        const _redisStore = await redisStore({
+        host: '127.0.0.1',
+        port: 6379,
       });
       return {
-          store: _redisStore,
+        store: _redisStore,
       };
   },
 }),

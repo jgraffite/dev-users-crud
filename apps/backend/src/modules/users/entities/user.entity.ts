@@ -3,7 +3,7 @@ import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 @Entity('user')
 export class User {
   @PrimaryGeneratedColumn()
-  id: number;
+  id?: number;
 
   @Column({name: 'first_name'})
   firstName: string;
@@ -19,5 +19,5 @@ export class User {
 
 
   @Column({name: 'created_at', type: 'datetime', default: () => 'CURRENT_TIMESTAMP'})
-  createdAt: string;
+  createdAt?: string;
 }
