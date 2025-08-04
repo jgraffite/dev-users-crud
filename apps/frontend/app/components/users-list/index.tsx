@@ -9,7 +9,11 @@ interface UsersListProps {}
 
 const UsersList: React.FC<UsersListProps> = () => {
 
-  const {data: users, isLoading, error} = useGetAllUsers();
+  const {data: users, isLoading, error, refetch} = useGetAllUsers();
+
+  const onRemove = () => {
+    refetch();
+  }
 
   if (isLoading) {
     return <div className="mt-5 w-full h-full flex justify-center items-center">
@@ -26,7 +30,7 @@ const UsersList: React.FC<UsersListProps> = () => {
   return (
     <>
       {users?.map((user, key) => (
-        <UserCard onAnswer={() => {}} user={user} key={key} i={key} />
+        <UserCard onRemove={onRemove} user={user} key={key} i={key} />
       ))}
     </>
   );

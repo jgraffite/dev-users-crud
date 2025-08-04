@@ -14,6 +14,8 @@ export default function EditUserPage() {
 
   const onSubmit = async (values: any) => {
     await updateUser(userId as number, values);
+    alert('Usuário editado com sucesso');
+    // router.push('/')
   }
 
   useEffect(() => {

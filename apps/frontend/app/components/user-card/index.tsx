@@ -41,6 +41,10 @@ const UserCard: React.FC<UserCardProps> = ({ user, onRemove, i }) => {
 
   const deleteUser = async () => {
     try {
+      if (!window.confirm('Deseja prosseguir com a exclusão?')) {
+        return;
+      }
+      
       await removeUser(user.id);
       onRemove();
     } catch (error) {

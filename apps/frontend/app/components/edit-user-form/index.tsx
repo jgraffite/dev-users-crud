@@ -1,6 +1,7 @@
 import { useActionState, useEffect, useState } from "react";
 import { User } from "../../shared/models/user";
 import Button from "../button";
+import { useRouter } from "next/router";
 
 interface EditUserFormProps { 
   user?: User;
@@ -8,7 +9,7 @@ interface EditUserFormProps {
 }
 
 const EditUserForm: React.FC<EditUserFormProps> = ({user, onSubmit}) => {
-
+  const router = useRouter();
   const [values, setValues] = useState<any>({});
 
   const fields = [
@@ -31,6 +32,10 @@ const EditUserForm: React.FC<EditUserFormProps> = ({user, onSubmit}) => {
     setValues({...values, [field]: value});
   }
 
+  const onCancel = () => {
+    router.push('/');
+  }
+
   useEffect(() => {
     if (!user) {
       return;
@@ -48,7 +53,10 @@ const EditUserForm: React.FC<EditUserFormProps> = ({user, onSubmit}) => {
       <div className="p-5 m-2 border-1 border-grey">E-mail: <input type="email" className="ml-5 p-2 bg-white" name="email" onChange={(e) => onChangeField('email', e.target.value)} value={values.email} /></div>
       <div className="p-5 m-2 border-1 border-grey">Senha: <input type="password" className="ml-5 p-2 bg-white" name="password" onChange={(e) => onChangeField('password', e.target.value)} value={values.password} /></div>
 
-      <Button type="submit" onClick={() => {}}>Salvar</Button>
+      <div className="card-footer mt-5 px-6 flex items-center justify-end gap-2">
+        <Button variant='secondary' type="button" onClick={onCancel}>Cancelar</Button>
+        <Button type="submit" onClick={() => {}}>Salvar</Button>
+      </div>
     </form>
   )
 }
