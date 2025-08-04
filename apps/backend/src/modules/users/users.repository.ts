@@ -17,8 +17,7 @@ export class UsersRepository {
   ) {}
 
   create(createUserDto: CreateUserDto) {
-    console.log('createUserDto', createUserDto)
-    return this.repository.create({
+    return this.repository.insert({
       ...createUserDto,
     });
   }
@@ -36,6 +35,7 @@ export class UsersRepository {
     return await this.repository
       .createQueryBuilder()
       .cache(getAllCacheKey, cacheTTL)
+      .orderBy('id', 'DESC')
       .getMany();
   }
 
