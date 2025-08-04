@@ -1,4 +1,4 @@
-# ProjetoCRUD Usuários
+# Projeto CRUD Usuários
 
 Este projeto foi feito utilizando NextJS/React no frontend e NestJS no backend + MySQL como banco de dados e interface ORM (TypeORM) para acesso no backend.
 Turbo foi utilizado para facilitar o gerenciamento e execução dos dois projetos simultaneamente.
