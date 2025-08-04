@@ -1,13 +1,10 @@
-import axios from "axios"
-import { Lead } from "../shared/models/lead";
-import { Status } from "../shared/enums/status";
 import { User } from "../shared/models/user";
 
-const API_URL = 'http://localhost:3001';
+const API_URL_BASE = 'http://localhost:3001';
 
 
 export async function updateUser(id: number, user: User): Promise<any> {
-  const url = new URL(API_URL + `/users/${id}`)
+  const url = new URL(API_URL_BASE + `/users/${id}`)
   return (await fetch(
     url,
     {
@@ -22,7 +19,7 @@ export async function updateUser(id: number, user: User): Promise<any> {
 
 
 export async function createUser(user: User): Promise<any> {
-  const url = new URL(API_URL + `/users`)
+  const url = new URL(API_URL_BASE + `/users`)
   return (await fetch(
     url,
     {
@@ -36,7 +33,7 @@ export async function createUser(user: User): Promise<any> {
 }
 
 export async function removeUser(id: number): Promise<any> {
-  const url = new URL(API_URL + `/users/${id}`)
+  const url = new URL(API_URL_BASE + `/users/${id}`)
   return (await fetch(
     url,
     {

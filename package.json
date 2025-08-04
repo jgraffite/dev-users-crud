@@ -23,6 +23,7 @@
   ],
   "dependencies": {
     "@nestjs/mapped-types": "*",
+    "fs": "^0.0.1-security",
     "mongodb": "^5.9.2",
     "mysql2": "^3.14.3",
     "typeorm": "^0.3.25"

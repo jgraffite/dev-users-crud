@@ -5,11 +5,11 @@ config();
 
 export const dataSourceOptions: DataSourceOptions = {
   type: 'mysql',
-  host: 'localhost',
-  port: 3306,
-  username: 'app',
-  password: 'app',
-  database: 'app',
+  host: process.env.APP_MYSQL_HOST,
+  port: parseInt(process.env.APP_MYSQL_PORT || '3306'),
+  username: process.env.APP_MYSQL_USERNAME,
+  password: process.env.APP_MYSQL_PASSWORD,
+  database: process.env.APP_MYSQL_DATABASE,
   entities: [
     'dist/**/*.entity{.ts,.js}',
   ],
@@ -21,10 +21,10 @@ export const dataSourceOptions: DataSourceOptions = {
   cache: {
     type: 'redis',
     options: {
-        host: '127.0.0.1',
-        port: 6379,
-        username: '',
-        password: '',
+        host: process.env.APP_REDIS_HOST,
+        port: process.env.APP_REDIS_PORT,
+        username: process.env.APP_REDIS_USER,
+        password: process.env.APP_REDIS_PASSWORD,
     },
 },
 };

@@ -12,6 +12,12 @@ Execute os seguintes comandos:
 npm i
 ```
 
+2. Copiando o .env.dist para .env
+
+```sh
+cp ./apps/backend/.env.dist ./apps/backend/.env
+```
+
 ## Executando o projeto
 
 1. Inicialização do container do SQL Server

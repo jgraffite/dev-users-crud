@@ -4,25 +4,17 @@ import { AppService } from './app.service';
 import { UsersModule } from './modules/users/users.module';
 import { CacheModule } from '@nestjs/cache-manager';
 import { redisStore } from 'cache-manager-ioredis-yet';
+import { ConfigModule } from '@nestjs/config';
 @Module({
   imports: [
+    ConfigModule.forRoot(),
     UsersModule,
-    // TypeOrmModule.forRoot({
-    //   type: 'mongodb',
-    //   host: 'localhost',
-    //   port: 27017,
-    //   username: 'admin',
-    //   password: 'admin',
-    //   database: 'app',
-    //   // entities: ['src/resources/**/*.entity.ts'],
-    //   synchronize: true,
-    // }),
     CacheModule.registerAsync({
       isGlobal: true,
       useFactory: async () => {
         const _redisStore = await redisStore({
-        host: '127.0.0.1',
-        port: 6379,
+        host: process.env.APP_REDIS_HOST,
+        port: process.env.APP_REDIS_PORT,
       });
       return {
         store: _redisStore,

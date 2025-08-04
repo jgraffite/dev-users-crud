@@ -3,7 +3,6 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { Repository } from 'typeorm';
 import { User } from './entities/user.entity';
-import { dataSource } from 'src/shared/database/typeorm/data-source';
 
 const cacheTTL = 2 * 1000;
 const getOneCacheKey = (id: number) => `users:getOne-${id}`;
